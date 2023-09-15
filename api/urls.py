@@ -4,4 +4,4 @@ from .views import PersonView
 
 router = DefaultRouter()  
 router.register(r'', PersonView, basename='person') 
-urlpatterns = [path('api/', include(router.urls))]
+urlpatterns = [path('', include(router.urls))]
