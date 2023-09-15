@@ -1,8 +1,8 @@
-#Simple REST API
+# Simple REST API
 
 This is a simple REST API capable of CRUD operations on a "person" resource. The language used in its development is Python. The framework is Django REST framework. The database used in production is PostgreSQL.
 
-##Set Up
+## Set Up
 1. Clone this repository to your local machine by running the following command in your terminal; `git clone hhttps://github.com/Shosanvader/HNGx-Backend-Stage2`
 2. Go to the directory by running `cd HNGx-Backend-Stage2`
 3. Install the required packages by running `pip install -r requirements.txt`
