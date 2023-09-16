@@ -1,7 +1,7 @@
-from django.urls import path, include, re_path 
-from rest_framework.routers import DefaultRouter  
-from .views import PersonView  
+from django.urls import path
+from . import views
 
-router = DefaultRouter()  
-router.register(r'', PersonView, basename='person') 
-urlpatterns = [re_path(r'^/?', include(router.urls))]
+urlpatterns =[
+    path('', views.PersonListView.as_view()),
+    path('<str:pk>', views.PersonDetailView.as_view())    
+]
