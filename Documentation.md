@@ -1,69 +1,36 @@
 # API Documentation
 
 ## Overview
-This API provides a simple interface for managing `Person` objects. The API is built using Django and Django Rest Framework.
+This API provides access to a database of `Person` objects. Each `Person` has a unique `id` and a `name`. The API allows for the creation, retrieval, update, and deletion of `Person` objects.
 
 ## Endpoints
-The API has the following endpoint:
 
-- `/api/`: This endpoint provides access to the `Person` objects.
-
-### Standard Formats for Requests and Responses
-
-#### GET `/api/`
-This endpoint returns a list of all `Person` objects.
-
-- **Request Format:** No body required.
-- **Response Format:** A list of `Person` objects. Each object contains an `id` and a `name`.
-
-#### POST `/api/`
-This endpoint creates a new `Person` object.
-
-- **Request Format:** A JSON object containing a `name`.
-- **Response Format:** The created `Person` object.
-
-#### GET `/api/{id}/`
-This endpoint returns a specific `Person` object.
-
-- **Request Format:** No body required.
-- **Response Format:** The requested `Person` object.
-
-#### PUT `/api/{id}/`
-This endpoint updates a specific `Person` object.
-
-- **Request Format:** A JSON object containing the updated `name`.
-- **Response Format:** The updated `Person` object.
-
-#### DELETE `/api/{id}/`
-This endpoint deletes a specific `Person` object.
-
-- **Request Format:** No body required.
-- **Response Format:** No body returned.
-
-### Sample Usage
-
-#### GET `/api/`
-**Request:**
-```http
-GET /api/
-```
-**Response:**
-```json
-[
+### 1. List and Create Person: `GET / POST /`
+- **GET**: Retrieves a list of all `Person` objects.
+- **POST**: Creates a new `Person` object. Requires a JSON body with the following structure:
+    ```json
     {
-        "id": 1,
-        "name": "John Doe"
-    },
-    {
-        "id": 2,
-        "name": "Jane Doe"
+        "name": "<name>"
     }
-]
-```
+    ```
+    The `name` field must be unique, otherwise a validation error will be raised.
 
-### Known Limitations
-The current implementation only supports one field (`name`) for the `Person` model. If more fields are needed, they will need to be added to the model and serializer.
+### 2. Retrieve, Update, and Delete Person: `GET / PUT / PATCH / DELETE /<str:pk>`
+- **GET**: Retrieves the details of a `Person` object with the specified `id`.
+- **PUT / PATCH**: Updates the details of a `Person` object with the specified `id`. Requires a JSON body with the following structure:
+    ```json
+    {
+        "name": "<new_name>"
+    }
+    ```
+    The `name` field must be unique, otherwise a validation error will be raised.
+- **DELETE**: Deletes the `Person` object with the specified `id`.
 
+## Errors
+The API will return meaningful HTTP response codes along with clear error messages for easy debugging.
+
+## Note
+This API uses Django Rest Framework and requires appropriate authentication and permissions for all endpoints. Please refer to Django Rest Framework's documentation for more details on this.
 ### Deployment Instructions
 1. Install Django and Django Rest Framework.
 2. Clone the repository.
